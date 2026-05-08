@@ -160,7 +160,6 @@ export default function Home() {
             className="fixed inset-0 bg-white z-[60] md:hidden"
           >
             <div className="flex flex-col h-full">
-              {/* Header with close button */}
               <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
                 <div className="text-xl font-bold tracking-tight">Flexo</div>
                 <button
@@ -172,7 +171,6 @@ export default function Home() {
                 </button>
               </div>
 
-              {/* Menu links */}
               <div className="flex-1 flex flex-col items-center justify-center gap-8 px-6">
                 {navLinks.map((link, i) => (
                   <motion.button
@@ -188,7 +186,6 @@ export default function Home() {
                 ))}
               </div>
 
-              {/* CTA at bottom */}
               <div className="px-6 pb-12">
                 <button
                   onClick={() => scrollTo("waitlist")}
@@ -206,7 +203,7 @@ export default function Home() {
       {/* Top anchor */}
       <div id="top" />
 
-      {/* HERO */}
+      {/* === 1. HERO VIDEO === */}
       <section className="px-4 md:px-6 pt-8 pb-16">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -227,6 +224,7 @@ export default function Home() {
             </video>
           </motion.div>
 
+          {/* === 2. HERO COPY === */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -234,10 +232,10 @@ export default function Home() {
             className="text-center max-w-5xl mx-auto"
           >
             <p className="label-en text-gray-500 mb-8">FLEXO · MATCH · TRAIN · VERIFY</p>
-            <h1 className="heading-display text-5xl md:text-7xl lg:text-8xl mb-10 text-black">
-              Your time<br />
-              is worth more<br />
-              than waiting.
+            <h1 className="heading-display text-5xl md:text-7xl lg:text-8xl mb-10 text-black leading-tight">
+              <span className="block text-gray-400 font-medium">Looking for work?</span>
+              <span className="block text-gray-400 font-medium">Looking for workers?</span>
+              <span className="block mt-4" style={gradientTextStyle}>Flexo.</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed mb-10">
               The workforce platform that instantly matches workers and businesses — built on speed, skill, and respect.
@@ -253,7 +251,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* HERO STATS */}
+      {/* === 3. STATS === */}
       <section className="px-4 md:px-6 pb-32">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -289,7 +287,28 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* BRIDGE / VISION */}
+      {/* === 4. NEW CATEGORY: Full-time. Part-time. + Flexo. === */}
+      <section className="py-32 md:py-48 px-6 border-t border-gray-100">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="max-w-5xl mx-auto text-center"
+        >
+          <p className="label-en text-gray-400 mb-10">A NEW CATEGORY</p>
+          <h2 className="heading-display text-5xl md:text-7xl lg:text-8xl text-black mb-12 leading-tight">
+            <span className="block text-gray-300">Full-time.</span>
+            <span className="block text-gray-300">Part-time.</span>
+            <span className="block mt-6" style={gradientTextStyle}>+ Flexo.</span>
+          </h2>
+          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            A new way to work — one that fits your life, not the other way around. Built for the people who keep cities running.
+          </p>
+        </motion.div>
+      </section>
+
+      {/* === 5. BRIDGE / VISION (For workers / For employers) === */}
       <section id="vision" className="py-32 md:py-48 px-6 border-t border-gray-100 scroll-mt-24">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -384,81 +403,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* PRINCIPLE 01 */}
-      <section className="py-32 md:py-48 px-6 border-t border-gray-100">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="max-w-4xl mx-auto text-center"
-        >
-          <p className="label-en text-gray-400 mb-8">01 — PRINCIPLE</p>
-          <h2 className="heading-display text-5xl md:text-7xl text-black mb-10">
-            Built for the way<br />
-            work actually happens.
-          </h2>
-          <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
-            Today, <span className="font-bold text-black">77% of businesses still rely on walk-ins and referrals</span> to find shift workers. Hiring depends on chance, personal networks, and luck. Flexo started from a different question: what if matching, training, and verification were built into one system from day one?
-          </p>
-        </motion.div>
-      </section>
-
-      {/* PRINCIPLE 02 - TRUST */}
-      <section id="trust" className="px-4 md:px-6 py-16 scroll-mt-24">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="max-w-7xl mx-auto"
-        >
-          <div className="bg-black rounded-3xl py-32 md:py-48 px-8 md:px-16">
-            <div className="text-center mb-20">
-              <p className="label-en text-gray-500 mb-8">02 — PRINCIPLE</p>
-              <h2 className="heading-display text-5xl md:text-7xl text-white mb-10">
-                Trust isn&apos;t a feature.<br />
-                It&apos;s the foundation.
-              </h2>
-              <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-2xl mx-auto">
-                Three integrated systems work together so every shift on Flexo is filled by someone ready, vetted, and reliable.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
-              {[
-                {
-                  icon: <Zap className="w-8 h-8" />,
-                  num: "I — MATCH",
-                  title: "Instant Matching",
-                  desc: "Businesses post shifts in minutes. Nearby workers are notified instantly. Staff secured within hours, not weeks.",
-                },
-                {
-                  icon: <GraduationCap className="w-8 h-8" />,
-                  num: "II — TRAIN",
-                  title: "Flexo Sense",
-                  desc: "Workers build industry-specific soft and practical skills through AI-powered roleplay before they even apply.",
-                },
-                {
-                  icon: <ShieldCheck className="w-8 h-8" />,
-                  num: "III — VERIFY",
-                  title: "Verified Profiles",
-                  desc: "Training completion and past shift ratings are visible on every profile. Hire with confidence, day one.",
-                },
-              ].map((pillar) => (
-                <div key={pillar.num} className="text-center">
-                  <div className="text-white/60 mb-6 flex justify-center">{pillar.icon}</div>
-                  <p className="label-en text-white/40 mb-3">{pillar.num}</p>
-                  <h3 className="text-2xl font-bold text-white mb-4">{pillar.title}</h3>
-                  <p className="text-white/70 leading-relaxed">{pillar.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* VOICES */}
+      {/* === 6. VOICES === */}
       <section id="voices" className="py-32 md:py-48 px-6 border-t border-gray-100 bg-gray-50 scroll-mt-24">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -509,26 +454,61 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* PRINCIPLE 03 */}
-      <section className="py-32 md:py-48 px-6">
+      {/* === 7. TRUST === */}
+      <section id="trust" className="px-4 md:px-6 py-16 scroll-mt-24">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="max-w-4xl mx-auto text-center"
+          className="max-w-7xl mx-auto"
         >
-          <p className="label-en text-gray-400 mb-8">03 — PRINCIPLE</p>
-          <h2 className="heading-display text-5xl md:text-7xl text-black mb-10">
-            Time, given back.
-          </h2>
-          <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
-            No long applications. No interviews for shifts that last six hours. No waiting days for a response. Workers find and claim shifts in seconds. Employers post and fill openings in under a minute. Everything else gets out of the way.
-          </p>
+          <div className="bg-black rounded-3xl py-32 md:py-48 px-8 md:px-16">
+            <div className="text-center mb-20">
+              <p className="label-en text-gray-500 mb-8">TRUST</p>
+              <h2 className="heading-display text-5xl md:text-7xl text-white mb-10">
+                Trust isn&apos;t a feature.<br />
+                It&apos;s the foundation.
+              </h2>
+              <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-2xl mx-auto">
+                Three integrated systems work together so every shift on Flexo is filled by someone ready, vetted, and reliable.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
+              {[
+                {
+                  icon: <Zap className="w-8 h-8" />,
+                  num: "I — MATCH",
+                  title: "Instant Matching",
+                  desc: "Businesses post shifts in minutes. Nearby workers are notified instantly. Staff secured within hours, not weeks.",
+                },
+                {
+                  icon: <GraduationCap className="w-8 h-8" />,
+                  num: "II — TRAIN",
+                  title: "Flexo Sense",
+                  desc: "Workers build industry-specific soft and practical skills through AI-powered roleplay before they even apply.",
+                },
+                {
+                  icon: <ShieldCheck className="w-8 h-8" />,
+                  num: "III — VERIFY",
+                  title: "Verified Profiles",
+                  desc: "Training completion and past shift ratings are visible on every profile. Hire with confidence, day one.",
+                },
+              ].map((pillar) => (
+                <div key={pillar.num} className="text-center">
+                  <div className="text-white/60 mb-6 flex justify-center">{pillar.icon}</div>
+                  <p className="label-en text-white/40 mb-3">{pillar.num}</p>
+                  <h3 className="text-2xl font-bold text-white mb-4">{pillar.title}</h3>
+                  <p className="text-white/70 leading-relaxed">{pillar.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </motion.div>
       </section>
 
-      {/* HOW IT WORKS */}
+      {/* === 8. HOW IT WORKS === */}
       <section id="how" className="py-32 md:py-48 px-6 border-t border-gray-100 scroll-mt-24">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -562,7 +542,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* PRINCIPLE 04 - A standard, redefined */}
+      {/* === 9. A STANDARD, REDEFINED === */}
       <section className="py-32 md:py-48 px-6">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -571,7 +551,7 @@ export default function Home() {
           transition={{ duration: 0.8 }}
           className="max-w-4xl mx-auto text-center"
         >
-          <p className="label-en text-gray-400 mb-8">04 — PRINCIPLE</p>
+          <p className="label-en text-gray-400 mb-8">OUR STANDARD</p>
           <h2 className="heading-display text-5xl md:text-7xl text-black mb-10">
             A standard,<br />
             <span style={gradientTextStyle}>redefined.</span>
@@ -582,7 +562,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* STORY (Founder's letter) */}
+      {/* === 10. STORY === */}
       <section id="founder" className="py-32 md:py-48 px-6 border-t border-gray-100 bg-gray-50 scroll-mt-24">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -618,7 +598,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* WAITLIST FORM */}
+      {/* === 11. WAITLIST === */}
       <section id="waitlist" className="py-32 md:py-48 px-6 border-t border-gray-100 scroll-mt-24">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -702,7 +682,7 @@ export default function Home() {
       {/* FOOTER */}
       <footer className="border-t border-gray-100 py-12 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-gray-500">
-          {/* Left: Logo + Instagram (stacked) */}
+          {/* Left: Logo + Instagram */}
           <div className="flex flex-col items-center md:items-start gap-2">
             <div className="font-bold text-black text-lg">Flexo</div>
             <a
@@ -774,4 +754,3 @@ export default function Home() {
     </main>
   );
 }
-
