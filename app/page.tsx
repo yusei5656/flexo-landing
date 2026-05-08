@@ -6,7 +6,7 @@ import { ArrowRight, Zap, GraduationCap, ShieldCheck, Check, Menu, X } from "luc
 import { supabase } from "@/lib/supabase";
 
 const gradientTextStyle = {
-  backgroundImage: "linear-gradient(135deg, #84cc16 0%, #22c55e 50%, #15803d 100%)",
+  backgroundImage: "linear-gradient(135deg, #fbbf24 0%, #f97316 50%, #dc2626 100%)",
   WebkitBackgroundClip: "text" as const,
   backgroundClip: "text" as const,
   WebkitTextFillColor: "transparent" as const,
@@ -233,8 +233,8 @@ export default function Home() {
           >
             <p className="label-en text-gray-500 mb-8">FLEXO · MATCH · TRAIN · VERIFY</p>
             <h1 className="heading-display text-5xl md:text-7xl lg:text-8xl mb-10 text-black leading-tight">
-              <span className="block text-gray-400">Looking for work?</span>
-              <span className="block text-gray-400">Looking for workers?</span>
+              <span className="block text-black">Looking for work?</span>
+              <span className="block text-black">Looking for workers?</span>
               <span className="block mt-4" style={gradientTextStyle}>Flexo.</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed mb-10">
@@ -298,8 +298,8 @@ export default function Home() {
         >
           <p className="label-en text-gray-400 mb-10">A NEW CATEGORY</p>
           <h2 className="heading-display text-5xl md:text-7xl lg:text-8xl text-black mb-12 leading-tight">
-            <span className="block text-gray-300">Full-time.</span>
-            <span className="block text-gray-300">Part-time.</span>
+            <span className="block text-black">Full-time.</span>
+            <span className="block text-black">Part-time.</span>
             <span className="block mt-6" style={gradientTextStyle}>+ Flexo.</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
