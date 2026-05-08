@@ -233,8 +233,8 @@ export default function Home() {
           >
             <p className="label-en text-gray-500 mb-8">FLEXO · MATCH · TRAIN · VERIFY</p>
             <h1 className="heading-display text-5xl md:text-7xl lg:text-8xl mb-10 text-black leading-tight">
-              <span className="block text-gray-400 font-medium">Looking for work?</span>
-              <span className="block text-gray-400 font-medium">Looking for workers?</span>
+              <span className="block text-gray-400">Looking for work?</span>
+              <span className="block text-gray-400">Looking for workers?</span>
               <span className="block mt-4" style={gradientTextStyle}>Flexo.</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed mb-10">
