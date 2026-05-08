@@ -1,20 +1,16 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, useInView, animate } from "framer-motion";
-import { ArrowRight, Zap, GraduationCap, ShieldCheck, Check } from "lucide-react";
+import { motion, useInView, animate, AnimatePresence } from "framer-motion";
+import { ArrowRight, Zap, GraduationCap, ShieldCheck, Check, Menu, X } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
 const gradientTextStyle = {
-  backgroundImage: "linear-gradient(135deg, #a855f7 0%, #ec4899 100%)",
+  backgroundImage: "linear-gradient(135deg, #10b981 0%, #14b8a6 100%)",
   WebkitBackgroundClip: "text" as const,
   backgroundClip: "text" as const,
   WebkitTextFillColor: "transparent" as const,
   color: "transparent",
-};
-
-const gradientWarmStyle = {
-  backgroundImage: "linear-gradient(135deg, #ec4899 0%, #f97316 100%)",
 };
 
 // Animated number that counts from 0 when in view
@@ -40,15 +36,37 @@ function AnimatedNumber({ value, decimals = 0 }: { value: number; decimals?: num
   );
 }
 
+const navLinks = [
+  { id: "vision", label: "Vision" },
+  { id: "trust", label: "Trust" },
+  { id: "voices", label: "Voices" },
+  { id: "how", label: "How it works" },
+  { id: "founder", label: "Story" },
+];
+
 export default function Home() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const [activeRole, setActiveRole] = useState<"worker" | "employer">("employer");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
+    if (!email || !name) return;
 
     setStatus("loading");
     setErrorMsg("");
@@ -56,7 +74,10 @@ export default function Home() {
     try {
       const { error } = await supabase
         .from("waitlist")
-        .insert({ email: email.toLowerCase().trim() });
+        .insert({
+          name: name.trim(),
+          email: email.toLowerCase().trim(),
+        });
 
       if (error) {
         if (error.code === "23505") {
@@ -70,6 +91,7 @@ export default function Home() {
 
       setStatus("success");
       setEmail("");
+      setName("");
     } catch {
       setErrorMsg("Something went wrong. Please try again.");
       setStatus("error");
@@ -78,6 +100,7 @@ export default function Home() {
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setMobileMenuOpen(false);
   };
 
   return (
@@ -94,31 +117,91 @@ export default function Home() {
 
           {/* Desktop nav links */}
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-            <button onClick={() => scrollTo("vision")} className="hover:text-black transition">
-              Vision
-            </button>
-            <button onClick={() => scrollTo("trust")} className="hover:text-black transition">
-              Trust
-            </button>
-            <button onClick={() => scrollTo("voices")} className="hover:text-black transition">
-              Voices
-            </button>
-            <button onClick={() => scrollTo("how")} className="hover:text-black transition">
-              How it works
-            </button>
-            <button onClick={() => scrollTo("founder")} className="hover:text-black transition">
-              Story
-            </button>
+            {navLinks.map((link) => (
+              <button
+                key={link.id}
+                onClick={() => scrollTo(link.id)}
+                className="hover:text-black transition"
+              >
+                {link.label}
+              </button>
+            ))}
           </div>
 
-          <button
-            onClick={() => scrollTo("waitlist")}
-            className="px-5 py-2 bg-black text-white text-sm font-semibold rounded-full hover:bg-gray-800 transition whitespace-nowrap"
-          >
-            Join waitlist
-          </button>
+          {/* Right side: Join waitlist + Mobile hamburger */}
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => scrollTo("waitlist")}
+              className="px-5 py-2 bg-black text-white text-sm font-semibold rounded-full hover:bg-gray-800 transition whitespace-nowrap"
+            >
+              Join waitlist
+            </button>
+
+            {/* Mobile menu button */}
+            <button
+              onClick={() => setMobileMenuOpen(true)}
+              className="md:hidden p-1 text-black"
+              aria-label="Open menu"
+            >
+              <Menu className="w-6 h-6" />
+            </button>
+          </div>
         </div>
       </nav>
+
+      {/* MOBILE MENU OVERLAY */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-white z-[60] md:hidden"
+          >
+            <div className="flex flex-col h-full">
+              {/* Header with close button */}
+              <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
+                <div className="text-xl font-bold tracking-tight">Flexo</div>
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="p-1"
+                  aria-label="Close menu"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              {/* Menu links */}
+              <div className="flex-1 flex flex-col items-center justify-center gap-8 px-6">
+                {navLinks.map((link, i) => (
+                  <motion.button
+                    key={link.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: 0.1 + i * 0.05 }}
+                    onClick={() => scrollTo(link.id)}
+                    className="text-3xl font-bold text-black hover:text-gray-500 transition"
+                  >
+                    {link.label}
+                  </motion.button>
+                ))}
+              </div>
+
+              {/* CTA at bottom */}
+              <div className="px-6 pb-12">
+                <button
+                  onClick={() => scrollTo("waitlist")}
+                  className="w-full px-8 py-4 bg-black text-white font-semibold rounded-full hover:bg-gray-800 transition flex items-center justify-center gap-2"
+                >
+                  Join the waitlist
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Top anchor */}
       <div id="top" />
@@ -479,29 +562,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* PRINCIPLE 04 */}
-      <section className="px-4 md:px-6 py-16">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="max-w-7xl mx-auto"
-        >
-          <div style={gradientWarmStyle} className="rounded-3xl py-32 md:py-48 px-8 md:px-16 text-center text-white">
-            <p className="label-en text-white/80 mb-8">04 — PRINCIPLE</p>
-            <h2 className="heading-display text-5xl md:text-7xl mb-10">
-              Quality you<br />
-              can measure.
-            </h2>
-            <p className="text-lg md:text-xl text-white/95 leading-relaxed max-w-2xl mx-auto">
-              <span className="font-bold">28.1% of businesses say skill assessment is their biggest hiring challenge.</span> Flexo solves it by showing training completion and past shift ratings directly on every profile. Skills are visible. Decisions get easier.
-            </p>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* PRINCIPLE 05 */}
+      {/* PRINCIPLE 04 - A standard, redefined */}
       <section className="py-32 md:py-48 px-6">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -510,13 +571,13 @@ export default function Home() {
           transition={{ duration: 0.8 }}
           className="max-w-4xl mx-auto text-center"
         >
-          <p className="label-en text-gray-400 mb-8">05 — PRINCIPLE</p>
+          <p className="label-en text-gray-400 mb-8">04 — PRINCIPLE</p>
           <h2 className="heading-display text-5xl md:text-7xl text-black mb-10">
             A standard,<br />
             <span style={gradientTextStyle}>redefined.</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
-            Flexo is more than an app. It's a quiet argument that shift work deserves the same care, design, and respect as any other kind of work. We built it for the people who keep cities running. We hope you'll see the difference.
+            Flexo is more than an app. It&apos;s a quiet argument that shift work deserves the same care, design, and respect as any other kind of work. We built it for the people who keep cities running. We hope you&apos;ll see the difference.
           </p>
         </motion.div>
       </section>
@@ -586,11 +647,20 @@ export default function Home() {
               </div>
               <h3 className="text-2xl font-bold mb-3">You&apos;re in.</h3>
               <p className="text-white/70">
-                Thanks for joining. We&apos;ll be in touch when Flexo launches.
+                Thanks for joining, {name || "friend"}. We&apos;ll be in touch when Flexo launches.
               </p>
             </motion.div>
           ) : (
-            <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+            <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-3">
+              <input
+                type="text"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Your name"
+                className="w-full px-6 py-4 border border-gray-200 rounded-full focus:outline-none focus:border-black transition text-base"
+                disabled={status === "loading"}
+              />
               <div className="flex flex-col sm:flex-row gap-3">
                 <input
                   type="email"
@@ -634,9 +704,28 @@ export default function Home() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
           <div className="font-bold text-black text-lg">Flexo</div>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-black transition">Privacy</a>
-            <a href="#" className="hover:text-black transition">Terms</a>
-            <a href="mailto:flexoapp.team@gmail.com" className="hover:text-black transition">Contact</a>
+            <a
+              href="https://yusei5656.github.io/Flexo-Legal/Privacy-policy.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-black transition"
+            >
+              Privacy
+            </a>
+            <a
+              href="https://yusei5656.github.io/Flexo-Legal/Terms.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-black transition"
+            >
+              Terms
+            </a>
+            <a
+              href="mailto:flexoapp.team@gmail.com"
+              className="hover:text-black transition"
+            >
+              Contact
+            </a>
           </div>
           <div>© 2026 Flexo. All rights reserved.</div>
         </div>
