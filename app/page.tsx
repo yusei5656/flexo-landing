@@ -6,7 +6,7 @@ import { ArrowRight, Zap, GraduationCap, ShieldCheck, Check, Menu, X } from "luc
 import { supabase } from "@/lib/supabase";
 
 const gradientTextStyle = {
-  backgroundImage: "linear-gradient(135deg, #10b981 0%, #14b8a6 100%)",
+  backgroundImage: "linear-gradient(135deg, #84cc16 0%, #22c55e 50%, #15803d 100%)",
   WebkitBackgroundClip: "text" as const,
   backgroundClip: "text" as const,
   WebkitTextFillColor: "transparent" as const,
@@ -417,8 +417,8 @@ export default function Home() {
             <div className="text-center mb-20">
               <p className="label-en text-gray-500 mb-8">02 — PRINCIPLE</p>
               <h2 className="heading-display text-5xl md:text-7xl text-white mb-10">
-                Trust isn't a feature.<br />
-                It's the foundation.
+                Trust isn&apos;t a feature.<br />
+                It&apos;s the foundation.
               </h2>
               <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-2xl mx-auto">
                 Three integrated systems work together so every shift on Flexo is filled by someone ready, vetted, and reliable.
@@ -647,7 +647,7 @@ export default function Home() {
               </div>
               <h3 className="text-2xl font-bold mb-3">You&apos;re in.</h3>
               <p className="text-white/70">
-                Thanks for joining, {name || "friend"}. We&apos;ll be in touch when Flexo launches.
+                Thanks for joining{name ? `, ${name}` : ""}. We&apos;ll be in touch when Flexo launches.
               </p>
             </motion.div>
           ) : (
