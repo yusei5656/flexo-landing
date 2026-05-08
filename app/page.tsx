@@ -6,7 +6,7 @@ import { ArrowRight, Zap, GraduationCap, ShieldCheck, Check, Menu, X } from "luc
 import { supabase } from "@/lib/supabase";
 
 const gradientTextStyle = {
-  backgroundImage: "linear-gradient(135deg, #fbbf24 0%, #f97316 50%, #dc2626 100%)",
+  backgroundImage: "linear-gradient(135deg, #22d3ee 0%, #3b82f6 50%, #8b5cf6 100%)",
   WebkitBackgroundClip: "text" as const,
   backgroundClip: "text" as const,
   WebkitTextFillColor: "transparent" as const,
