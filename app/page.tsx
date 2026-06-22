@@ -296,14 +296,12 @@ export default function Home() {
           transition={{ duration: 0.8 }}
           className="max-w-5xl mx-auto text-center mb-16"
         >
-          <p className="label-en text-gray-400 mb-8">SUPPORTED BY</p>
           <h2 className="heading-display text-4xl md:text-6xl text-black mb-8 leading-tight">
-            Backed by teams who<br />
-            believe in <span style={gradientTextStyle}>better work.</span>
+            supported by<br />
+             <span style={gradientTextStyle}>\</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Be among the first teams in Toronto to hire on Flexo.
-            Your logo could be here.
           </p>
         </motion.div>
 
