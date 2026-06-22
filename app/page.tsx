@@ -287,6 +287,51 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* === 3.5 PARTNERS / NOW ONBOARDING === */}
+      <section className="py-24 md:py-32 px-6 border-t border-gray-100 overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="max-w-5xl mx-auto text-center mb-16"
+        >
+          <p className="label-en text-gray-400 mb-8">NOW ONBOARDING PARTNERS</p>
+          <h2 className="heading-display text-4xl md:text-6xl text-black mb-8 leading-tight">
+            Looking for partner<br />
+            restaurants &amp; <span style={gradientTextStyle}>venues.</span>
+          </h2>
+          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            Be among the first hospitality teams in Toronto to hire on Flexo.
+            Your logo could be here.
+          </p>
+        </motion.div>
+
+        {/* Logo marquee — placeholder circles scrolling seamlessly */}
+        <div
+          className="relative w-full"
+          style={{
+            WebkitMaskImage:
+              "linear-gradient(to right, transparent, #000 12%, #000 88%, transparent)",
+            maskImage:
+              "linear-gradient(to right, transparent, #000 12%, #000 88%, transparent)",
+          }}
+        >
+          <motion.div
+            className="flex w-max"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ duration: 28, ease: "linear", repeat: Infinity }}
+          >
+            {/* 14 identical circles loop seamlessly at -50% */}
+            {Array.from({ length: 14 }).map((_, i) => (
+              <div key={i} className="flex-none px-5 md:px-8">
+                <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gray-100 border border-gray-200" />
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
       {/* === 4. NEW CATEGORY: Full-time. Part-time. + Flexo. === */}
       <section className="py-32 md:py-48 px-6 border-t border-gray-100">
         <motion.div
