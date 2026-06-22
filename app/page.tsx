@@ -305,7 +305,7 @@ export default function Home() {
           className="max-w-5xl mx-auto text-center mb-10"
         >
           <h2 className="heading-display text-4xl md:text-6xl mb-6 leading-tight">
-            <span style={yellowGradientTextStyle}>Supported</span>
+            <span style={yellowGradientTextStyle}>Supported by</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Be among the first teams in Toronto to hire on Flexo.
