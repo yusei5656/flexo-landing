@@ -13,6 +13,14 @@ const gradientTextStyle = {
   color: "transparent",
 };
 
+const yellowGradientTextStyle = {
+  backgroundImage: "linear-gradient(135deg, #fde047 0%, #f59e0b 50%, #d97706 100%)",
+  WebkitBackgroundClip: "text" as const,
+  backgroundClip: "text" as const,
+  WebkitTextFillColor: "transparent" as const,
+  color: "transparent",
+};
+
 // Animated number that counts from 0 when in view
 function AnimatedNumber({ value, decimals = 0 }: { value: number; decimals?: number }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -296,12 +304,14 @@ export default function Home() {
           transition={{ duration: 0.8 }}
           className="max-w-5xl mx-auto text-center mb-16"
         >
+          <p className="label-en text-gray-400 mb-8">SUPPORTED BY</p>
           <h2 className="heading-display text-4xl md:text-6xl text-black mb-8 leading-tight">
-            supported by<br />
-             <span style={gradientTextStyle}></span>
+            Supported by teams who<br />
+            believe in <span style={gradientTextStyle}>better work.</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Be among the first teams in Toronto to hire on Flexo.
+            Your logo could be here.
           </p>
         </motion.div>
 
