@@ -295,23 +295,20 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* === 3.5 PARTNERS / NOW ONBOARDING === */}
-      <section className="py-24 md:py-32 px-6 border-t border-gray-100 overflow-hidden">
+      {/* === 3.5 SUPPORTED BY === */}
+      <section className="py-12 md:py-20 px-6 border-t border-gray-100 overflow-hidden">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="max-w-5xl mx-auto text-center mb-16"
+          className="max-w-5xl mx-auto text-center mb-10"
         >
-          <p className="label-en text-gray-400 mb-8">SUPPORTED BY</p>
-          <h2 className="heading-display text-4xl md:text-6xl text-black mb-8 leading-tight">
-            Supported by teams who<br />
-            believe in <span style={gradientTextStyle}>better work.</span>
+          <h2 className="heading-display text-4xl md:text-6xl mb-6 leading-tight">
+            <span style={yellowGradientTextStyle}>Supported</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Be among the first teams in Toronto to hire on Flexo.
-            Your logo could be here.
           </p>
         </motion.div>
 
